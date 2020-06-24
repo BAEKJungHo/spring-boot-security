@@ -67,3 +67,7 @@ public class SecurityController {
 		+ 인증 방식은 폼 로그인 방식과 httpBasic 로그인 방식을 제공한다.
 		+ 기본 로그인 페이지를 제공한다.
 		+ 기본 계정 한 개를 제공한다. (id : user / pw : 콘솔에 찍히는 랜덤 문자열)
+		
+## 사용자 정의 보안 기능 구현
+
+![API](images/s1.JPG)
