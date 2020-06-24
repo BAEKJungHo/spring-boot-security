@@ -109,8 +109,7 @@ public class SecurityController {
     }
 ```
 
-위 코드에서 exceptionHandling 을 타고 들어가서 ExceptionHandlingConfigurer 클래스의 configure 메서드를 보면
-`ExceptionTranslationFilter` 를 생성하여 사용하는것을 알 수 있다.
+위 코드에서 exceptionHandling 을 타고 들어가서 ExceptionHandlingConfigurer 클래스의 configure 메서드를 보면 ExceptionTranslationFilter 를 생성하여 사용하는것을 알 수 있다.
 
 - ExceptionHandlingConfigurer 
 
