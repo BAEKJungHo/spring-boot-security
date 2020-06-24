@@ -87,10 +87,10 @@ public class SecurityController {
             AuthenticationManager authenticationManager = this.authenticationManager();
             this.authenticationBuilder.parentAuthenticationManager(authenticationManager);
             Map<Class<?>, Object> sharedObjects = this.createSharedObjects();
-	// HttpSecurity 객체 생성
+	    // HttpSecurity 객체 생성
             this.http = new HttpSecurity(this.objectPostProcessor, this.authenticationBuilder, sharedObjects);
             if (!this.disableDefaults) {
-	    // 여기서 11개의 세부적인 보안기능을 설정할 수 있는 API 를 제공하는 것을 알 수있다.
+	        // 여기서 11개의 세부적인 보안기능을 설정할 수 있는 API 를 제공하는 것을 알 수있다.
                 // 이 기능은 HttpSecurity 가 제공한다.
                 ((HttpSecurity)((DefaultLoginPageConfigurer)((HttpSecurity)((HttpSecurity)((HttpSecurity)((HttpSecurity)((HttpSecurity)((HttpSecurity)((HttpSecurity)((HttpSecurity)this.http.csrf().and()).addFilter(new WebAsyncManagerIntegrationFilter()).exceptionHandling().and()).headers().and()).sessionManagement().and()).securityContext().and()).requestCache().and()).anonymous().and()).servletApi().and()).apply(new DefaultLoginPageConfigurer())).and()).logout();
                 ClassLoader classLoader = this.context.getClassLoader();
@@ -149,7 +149,11 @@ WebSecurityConfigurerAdapter 의 configure 메서드는 `스프링 시큐리티�
 
 ### 스프링 환경 설정 파일(application.properties)을 이용하여, 시큐리티 로그인 ID / PW 설정 방법
 
+- application.properties
+
 ```xml
 spring.security.user.name=user
 spring.security.user.password=root
 ```
+
+위 처럼 설정하면 톰캣에서 제공하는 랜덤 문자열의 패스워드 대신에, 자신이 설정한 패스워드로 로그인 할 수 있다.
