@@ -158,6 +158,22 @@ spring.security.user.password=root
 
 위 처럼 설정하면 톰캣에서 제공하는 랜덤 문자열의 패스워드 대신에, 자신이 설정한 패스워드로 로그인 할 수 있다.
 
-## 인증 API - form 인증
+## 인증 API - Form 인증
+
+![API](images/s3.JPG)
+
+```java
+http.formLogin() // Form 로그인 인증 기능이 작동함
+	.loginPage("/login.html") // 사용자 정의 로그인 페이지
+	.defaultSuccessUrl("/home") // 로그인 성공 후 이동 페이지
+	.failureUrl("/login.html?error=true") // 로그인 실패 후 이동 페이지
+	.usernameParameter("username") // 아이디 파라미터명 설정
+	.passwordParameter("password") // 패스워드 파라미터명 설정
+	.loginProcessingUrl("/login") // 로그인 Form Action Url
+	.successHandler(loginSuccessHandler()) // 로그인 성공 후 핸들러
+	.failureHandler(loginFailureHandler()) // 로그인 실패 후 핸들러
+```
+
+## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
