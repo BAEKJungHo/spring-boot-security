@@ -235,6 +235,13 @@ AntPathRequestMatcher 는 요청 URL 정보가 매칭되는지 확인한다. 디
 
 ![API](images/s6.JPG)
 
+### AbstractAuthenticationProcessingFilter 를 통해 시큐리티의 필터 목록들 확인하기
+
+AbstractAuthenticationProcessingFilter 는 UsernamePasswordAuthenticationFilter 의 상위 클래스이다. AbstractAuthenticationProcessingFilter 에서 doFilter 메서드에 breakpoint 를 찍어
+디버깅 하면 시큐리티의 필터 목록들을 볼 수 있다. 시큐리티 필터는 총 14개가 존재하며 리스트에 담긴 순서대로 동작한다.
+
+![API](images/s7.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
