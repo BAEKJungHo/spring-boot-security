@@ -238,7 +238,8 @@ AntPathRequestMatcher 는 요청 URL 정보가 매칭되는지 확인한다. 디
 ### AbstractAuthenticationProcessingFilter 를 통해 시큐리티의 필터 목록들 확인하기
 
 AbstractAuthenticationProcessingFilter 는 UsernamePasswordAuthenticationFilter 의 상위 클래스이다. AbstractAuthenticationProcessingFilter 에서 doFilter 메서드에 breakpoint 를 찍어
-디버깅 하면 시큐리티의 필터 목록들을 볼 수 있다. 시큐리티 필터는 총 14개가 존재하며 리스트에 담긴 순서대로 동작한다.
+디버깅 하면 시큐리티의 필터 목록들을 볼 수 있다. 시큐리티 필터는 총 14개가 존재하며 리스트에 담긴 순서대로 동작한다. 이 14개의 필터는 `FilterChainProxy` 라는 빈 클래스가 관리하며
+우리가 SecurityConfig 에서 API 를 사용할 때 API 에 알맞은 Filter 들도 같이 생성된다. 예를들어 http.formLogin() 을 사용한다면 UsernamePasswordAuthenticationFilter 가 생성된다.
 
 ![API](images/s7.JPG)
 
