@@ -242,6 +242,14 @@ AbstractAuthenticationProcessingFilter 는 UsernamePasswordAuthenticationFilter 
 
 ![API](images/s7.JPG)
 
+해당 위치에 breakPoint 를 찍고 `localhost:8080/` 루트 페이지로 접속하게되면 필터들을 확인할 수 있다. 폼 로그인 페이지에서 id 와 pw 를 입력하면 
+
+```java
+authResult = this.attemptAuthentication(request, response);
+```
+
+위 코드의 attemptAuthentication 를 쭉 타고 들어가 보면 그림에 나와있는 로직을 이해할 수 있다.
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
