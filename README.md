@@ -157,3 +157,7 @@ spring.security.user.password=root
 ```
 
 위 처럼 설정하면 톰캣에서 제공하는 랜덤 문자열의 패스워드 대신에, 자신이 설정한 패스워드로 로그인 할 수 있다.
+
+## 인증 API - form 인증
+
+![API](images/s2.JPG)
