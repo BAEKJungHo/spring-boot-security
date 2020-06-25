@@ -218,6 +218,8 @@ successHandler 와 failureHandler 는 각각 `AuthenticationSuccessHandler` 인�
 
 ![API](images/s4.JPG)
 
+즉, `사용자 정의 로그인 페이지`를 만들어 사용하는 경우 로그인 페이지의 name 을 스프링 시큐리티에서 설정한 이름과 동일하게 맞춰줘야 한다.
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
