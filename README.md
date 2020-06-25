@@ -174,6 +174,50 @@ http.formLogin() // Form 로그인 인증 기능이 작동함
 	.failureHandler(loginFailureHandler()) // 로그인 실패 후 핸들러
 ```
 
+- Example
+
+```java
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .anyRequest().authenticated();
+        http.formLogin()
+                .loginPage("/loginPage")
+                .defaultSuccessUrl("/")
+                .failureUrl("/login")
+                .usernameParameter("userId")
+                .passwordParameter("passwd")
+                .loginProcessingUrl("/login_proc")
+                .successHandler(new AuthenticationSuccessHandler() {
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                        System.out.println("authentication : " + authentication.getName()); // application.properties 에서 설정한 userName 이 찍힌다.
+                        httpServletResponse.sendRedirect("/");
+                    }
+                })
+                .failureHandler(new AuthenticationFailureHandler() {
+                    @Override
+                    public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+                        System.out.println("exception : " + e.getMessage()); // Bad credentials
+                        httpServletResponse.sendRedirect("/login");
+                    }
+                })
+                .permitAll(); // permitAll() 을 하는 이유는 loginPage("/loginPage") 설정한 loginPage 는 인증 없이도 접근이 가능 해야 하기 때문이다.
+    }
+```    
+
+successHandler 와 failureHandler 는 각각 `AuthenticationSuccessHandler` 인터페이스와 `AuthenticationFailureHandler` 인터페이스를 구현한 구현체를 생성해야 하는데, 위 예제는 익명 클래스로 생성하였다. 폼 로그인 페이지에서 로그인에 실패하면 failureHandler 를 타고 `Bad credentials` 라는 에러 메시지가 찍힌다. 로그인에 성공하면 application.properties 에서 설정한 userName 이 찍힌다.
+
+```java
+.usernameParameter("userId")
+.passwordParameter("passwd")
+.loginProcessingUrl("/login_proc")
+```
+
+위 처럼 설정하게 되면 시큐리티가 기본으로 제공하는 폼 로그인 페이지에서 개발자 도구(F12)를 열어서 확인해보면 다음과 같이 설정이 되어있다.
+
+![API](images/s4.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
