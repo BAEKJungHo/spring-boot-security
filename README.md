@@ -231,7 +231,7 @@ AntPathRequestMatcher 는 요청 URL 정보가 매칭되는지 확인한다. 디
 인증 처리 방식은 먼저 Authentication 객체를 만들어서 입력한 Username 과 Password 를 저장한다. AuthenticationManager 는 AuthenticationProvider 클래스 타입의 객체들을 가지고 있어서 이 중에서 하나를 선택해서 인증 처리를 위임한다. 즉, 실제 인증 처리는 AuthenticationProvider 가 처리한다. 인증 처리에 실패하면 AuthenticationException 을 통해 다시 UsernamePasswordAutenticationFilter 로 이동한다. 인증에 성공하면 user 정보와 Authorities(권한) 정보를 저장하여 다시 AuthenticationManager 에게 리턴한다. AuthenticationManager 는 AuthenticationProvider 에게 받은 최종적인 인증 객체인 `Authentication` 을 필터에게 전달한다. 그리고 이 필터는 Authentication 을 `SecurityContext` 에 저장한다. 
 그리고 마지막으로 SuccessHandler 를 통해 성공 후 작업을 처리하게 된다.
 
-> 즉, SecurityContext 는 인증 객체(Authentication)을 저장하는 객체이다.
+> 즉, SecurityContext 는 인증객체(Authentication)를 저장하는 객체이다.
 
 ![API](images/s6.JPG)
 
