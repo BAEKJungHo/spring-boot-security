@@ -251,6 +251,9 @@ authResult = this.attemptAuthentication(request, response);
 
 위 코드의 attemptAuthentication 를 쭉 타고 들어가 보면 그림에 나와있는 로직을 이해할 수 있다.
 
+## Logout 처리 : LogoutFilter
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
+
