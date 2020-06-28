@@ -330,7 +330,7 @@ localhost:8080/login 에서 로그인을 한다. 그리고 크롬 확장 프로�
 
 JSESSIONID 의 쿠키 값을 삭제하면 서버는 로그인을 한 사용자임에도 불구하고 세션 ID 에 담긴 값이 없으므로 처음 로그인한 사용자라고 판단하고 다시 인증을 요구한다.
 
-이번에는 rembmer me 기능을 체크하고 로그인을 한 후에 쿠키 정보를 확인해보면 remember-me 라는 쿠키 정보도 생겼음을 알 수 있다.
+이번에는 rembmer-me 기능을 체크하고 로그인을 한 후에 쿠키 정보를 확인해보면 remember-me 라는 쿠키 정보도 생겼음을 알 수 있다.
 
 ![API](images/s15.JPG)
 
@@ -346,6 +346,26 @@ remember-me 키에 대한 value 값에는 로그인 id / pw 와 쿠키 만료일
 ![API](images/s16.JPG)
 
 ![API](images/s17.JPG)
+
+remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFilter 에서 rememberMe에 대한 처리를 한다. rememberMe 쿠키를 reponse 에 담는다.
+
+```java
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("Authentication success. Updating SecurityContextHolder to contain: " + authResult);
+        }
+
+        SecurityContextHolder.getContext().setAuthentication(authResult);
+	
+	// remember-me 처리
+        this.rememberMeServices.loginSuccess(request, response, authResult);
+        if (this.eventPublisher != null) {
+            this.eventPublisher.publishEvent(new InteractiveAuthenticationSuccessEvent(authResult, this.getClass()));
+        }
+
+        this.successHandler.onAuthenticationSuccess(request, response, authResult);
+    }
+```
 
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
