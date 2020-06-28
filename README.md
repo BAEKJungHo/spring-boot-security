@@ -253,6 +253,27 @@ authResult = this.attemptAuthentication(request, response);
 
 ## Logout 처리 : LogoutFilter
 
+![API](images/s8.JPG)
+
+클라이언트가 logout 요청을 보내면 시큐리티가 처리를 한다. 시큐리티가 로그아웃 처리를 할 때 하는 일은 세션 무효화, 인증토큰 삭제, 쿠키 정보삭제, 로그인 페이지로 리다이렉트 등이 있다.
+
+- Logout API 설정
+
+```java
+protected void configure(HttpSecurity http) throws Exception {
+	http.logout() // 로그아웃 처리(로그아웃 기능이 작동함)
+		.logoutUrl("/logout") // 로그아웃 처리 URL
+		.logoutSuccessUrl("/login") // 로그아웃 성공 후 이동페이지
+		.deleteCookies("JSESSIONID", "remember-me") // 로그아웃 후 쿠키 삭제
+		.addLogoutHandler(logoutHandler()) // 로그아웃 핸들러
+		.logoutSuccessHandler(logoutSuccessHandler()) // 로그아웃 성공 후 핸들러
+}
+```
+
+![API](images/s9.JPG)
+
+![API](images/s10.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
