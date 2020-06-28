@@ -341,6 +341,12 @@ remember-me 키에 대한 value 값에는 로그인 id / pw 와 쿠키 만료일
 이런 기능이 가능하도록 해주는 것이 `RememberMeAuthenticationFilter` 가 해주며, JSESSIONID 가 없더라고 reqeust header 에 remember-me 가 존재하면, 해당 value 에 있는 id 와 pw 를
 파싱하여 User 정보를 얻고, User 객체를 통해서 다시금 인증을 시도하고, 인증을 성공하게 된다. 그리고 다시 JSESSIONID 가 생기게 된다.
 
+### RememberMeAuthenticationFilter
+
+![API](images/s16.JPG)
+
+![API](images/s17.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
