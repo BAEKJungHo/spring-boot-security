@@ -303,9 +303,32 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ## Remember Me 인증
 
+![API](images/s12.JPG)
+
 ![API](images/s13.JPG)
 
-![API](images/s12.JPG)
+- 세션 프로세스
+
+1. 클라이언트가 서버에 접속시 세션 ID 를 발급
+2. 서버에서는 클라이언트로 발급해준 세션 ID 를 쿠키를 사용해 저장 (JSESSIONID)
+3. 클라이언트는 다시 접속할 때, 이 쿠키(JSESSIONID)를 이용해서 세션 ID 값을 서버에 전달
+
+- Remember Me Example
+
+```java
+.and()
+	.rememberMe()
+	.rememberMeParameter("remember")
+	.tokenValiditySeconds(3600)
+	.userDetailsService(userDetailsService);
+```
+
+localhost:8080/login 에서 로그인을 한다. 그리고 크롬 확장 프로그램인 `EditThisCookie` 를 설치한다. 그리고 로그인된 페이지서 확장 프로그램을 열어보면 아래와 같이 나온다. EditThisCookie 은
+쿠키 정보를 보여준다. 쿠키는 Key 와 Value 값으로 파일로 저장하는데 EditThisCookie 를 이용해서 쿠키를 삭제할 수도 있다.
+
+![API](images/s14.JPG)
+
+JSESSIONID 의 쿠키 값을 삭제하면 서버는 로그인을 한 사용자임에도 불구하고 세션 ID 에 담긴 값이 없으므로 처음 로그인한 사용자라고 판단하고 다시 인증을 요구한다.
 
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
