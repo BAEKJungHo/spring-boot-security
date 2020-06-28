@@ -272,6 +272,33 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ![API](images/s9.JPG)
 
+- LogoutFilter 디버깅 하기
+
+```java
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .addLogoutHandler(new LogoutHandler() {
+                    @Override
+                    public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
+                        HttpSession session = httpServletRequest.getSession();
+                        session.invalidate();
+                    }
+                })
+                .logoutSuccessHandler(new LogoutSuccessHandler() {
+                    @Override
+                    public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                        httpServletResponse.sendRedirect("/login");
+                    }
+                })
+                .deleteCookies("remember-me");
+```
+
+![API](images/s11.JPG)
+
+로그인을 하고나서 `localhost:8080/logout` 페이지에서 로그아웃 버튼을 누르면 LogoutFilter 의 doFilter 가 동작하게 된다. this.handler 에 담긴 핸들러를 보면 총 5개의 핸들러가 있는데
+0번 은 우리가 직접 SecurityConfig 에서 설정한 핸들러이며, 1번 부터 4번은 스프링 시큐리티에서 기본으로 제공하는 핸들러이다.
+
 ![API](images/s10.JPG)
 
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
