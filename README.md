@@ -301,6 +301,12 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ![API](images/s10.JPG)
 
+## Remember Me 인증
+
+![API](images/s13.JPG)
+
+![API](images/s12.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
