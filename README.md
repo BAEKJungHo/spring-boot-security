@@ -330,6 +330,17 @@ localhost:8080/login 에서 로그인을 한다. 그리고 크롬 확장 프로�
 
 JSESSIONID 의 쿠키 값을 삭제하면 서버는 로그인을 한 사용자임에도 불구하고 세션 ID 에 담긴 값이 없으므로 처음 로그인한 사용자라고 판단하고 다시 인증을 요구한다.
 
+이번에는 rembmer me 기능을 체크하고 로그인을 한 후에 쿠키 정보를 확인해보면 remember-me 라는 쿠키 정보도 생겼음을 알 수 있다.
+
+![API](images/s15.JPG)
+
+remember-me 키에 대한 value 값에는 로그인 id / pw 와 쿠키 만료일이 담겨있다. 
+
+이제 다시 JSESSIONID 의 쿠키 값을 삭제하고 루트 페이지에 접속해보면 로그인이 된 상태를 확인할 수 있다.
+
+이런 기능이 가능하도록 해주는 것이 `RememberMeAuthenticationFilter` 가 해주며, JSESSIONID 가 없더라고 reqeust header 에 remember-me 가 존재하면, 해당 value 에 있는 id 와 pw 를
+파싱하여 User 정보를 얻고, User 객체를 통해서 다시금 인증을 시도하고, 인증을 성공하게 된다. 그리고 다시 JSESSIONID 가 생기게 된다.
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
