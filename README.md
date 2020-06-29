@@ -400,6 +400,14 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 none 으로 설정하게 되면 세션 고정 공격을 당할 수 있다. 기본 값은 `changeSessionId()` 이다. 따라서 우리가 위 처럼 설정하지 않더라도 스프링 시큐리티가 자동으로 초기화 시켜준다.
 
+- 세션 고정 공격 테스트
+
+브라우저 2개를 연다. (크롬 : 사용자 , 엣지 : 공격자) 그리고 공격자가 localhost:8080/login 페이지에 접속한다. 그리고 네트워크 -> F5 -> login 리소스 클릭 해서 쿠키를 확인해보면 JSESSIONID 가 발급이 되어있다. 해당 쿠킥 값을 복사해서 크롬(사용자)에 가서 EditThisCookie 를 열어서 쿠키 값을 변경한다. 그리고 사용자에서 로그인을 하게되면, 공격자에서는 로그인이 없어도 루트 페이지에 접근이 가능하게 된다.
+
+![API](images/s25.JPG)
+
+![API](images/s26.JPG)
+
 ### 세션 정책
 
 ![API](images/s22.JPG)
