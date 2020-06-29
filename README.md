@@ -379,14 +379,16 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 동시 세션 제어의 전략은 2가지가 있다. 
 
-- 이전 사용자 세션 만료
+- 이전 사용자 세션 만료 (`maxSessionsPreventsLogin(false)` 디폴트는 false 이다.)
 - 현재 사용자 인증 실패 (`maxSessionsPreventsLogin(true)`)
 
 ![API](images/s20.JPG)
 
-현자 사용자 인증 실패 전략 테스트를 하기 위해서 서로 다른 브라우저 2개를 열고, 로그인을 시도하게되면 나중에 로그인 시도하는 브라우저에서 아래와 같은 화면이 나온다.
+현재 사용자 인증 실패 전략 테스트를 하기 위해서 서로 다른 브라우저 2개를 열고, 로그인을 시도하게되면 나중에 로그인 시도하는 브라우저에서 아래와 같은 화면이 나온다.
 
 ![API](images/s24.JPG)
+
+이전 사용자 세션 만료 전략을 테스트 하기 위해서는 `maxSessionsPreventsLogin(false)` 설정을 하고 테스트하면 된다.
 
 ![API](images/s21.JPG)
 
