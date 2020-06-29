@@ -373,7 +373,7 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 ## 동시 세션 제어, 세션 고정 보호, 세션 정책
 
-- 동시 세션 제어
+### 동시 세션 제어
 
 ![API](images/s19.JPG)
 
@@ -390,9 +390,17 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 이전 사용자 세션 만료 전략을 테스트 하기 위해서는 `maxSessionsPreventsLogin(false)` 설정을 하고 테스트하면 된다.
 
+### 세션 고정 보호
+
+- 세션 고정 공격
+
 ![API](images/s21.JPG)
 
 ![API](images/s23.JPG)
+
+none 으로 설정하게 되면 세션 고정 공격을 당할 수 있다. 기본 값은 `changeSessionId()` 이다. 따라서 우리가 위 처럼 설정하지 않더라도 스프링 시큐리티가 자동으로 초기화 시켜준다.
+
+### 세션 정책
 
 ![API](images/s22.JPG)
 
