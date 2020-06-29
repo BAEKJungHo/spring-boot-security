@@ -371,6 +371,18 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 ![API](images/s18.JPG)
 
+## 동시 세션 제어, 세션 고정 보호, 세션 정책
+
+![API](images/s19.JPG)
+
+![API](images/s20.JPG)
+
+![API](images/s21.JPG)
+
+![API](images/s23.JPG)
+
+![API](images/s22.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
