@@ -373,7 +373,16 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 ## 동시 세션 제어, 세션 고정 보호, 세션 정책
 
+- 동시 세션 제어
+
 ![API](images/s19.JPG)
+
+동시 세션 제어의 전략은 2가지가 있다. 
+
+- 이전 사용자 세션 만료
+- 현재 사용자 인증 실패 (`maxSessionsPreventsLogin(true)`)
+
+- API
 
 ![API](images/s20.JPG)
 
