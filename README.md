@@ -384,6 +384,10 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 
 ![API](images/s20.JPG)
 
+현자 사용자 인증 실패 전략 테스트를 하기 위해서 서로 다른 브라우저 2개를 열고, 로그인을 시도하게되면 나중에 로그인 시도하는 브라우저에서 아래와 같은 화면이 나온다.
+
+![API](images/s24.JPG)
+
 ![API](images/s21.JPG)
 
 ![API](images/s23.JPG)
