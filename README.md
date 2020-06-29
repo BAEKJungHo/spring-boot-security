@@ -382,8 +382,6 @@ remember-me 를 체크하고 로그인하면 AbstractAuthenticationProcessingFil
 - 이전 사용자 세션 만료
 - 현재 사용자 인증 실패 (`maxSessionsPreventsLogin(true)`)
 
-- API
-
 ![API](images/s20.JPG)
 
 ![API](images/s21.JPG)
