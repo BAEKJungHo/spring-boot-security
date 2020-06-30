@@ -467,6 +467,10 @@ protected void configure(HttpSecurity http) throws Exception {
 - 엣지에서 로그인을 한다.
 - 디버깅을 하면서 어떻게 동작하는지 파악한다.
 
+![API](images/s29.JPG)
+
+엣지로 로그인한 사용자는 화면이 위 처럼 나온다.
+
 > maxSessionsPreventsLogin 에 설정하는 boolean 값은 ConcurrentSessionControlAuthentication 에 있는 exceptionIfMaximumExceeded 이다.
 
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
