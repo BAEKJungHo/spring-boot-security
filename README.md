@@ -437,7 +437,10 @@ protected void configure(HttpSecurity http) throws Exception {
 	- session.isExpired() == true
 		- 로그아웃 처리
 		- 즉시 오류 페이지 응답 : This session has been expired
+		
+![API](images/s27.JPG)
 
+![API](images/s28.JPG)
 
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
