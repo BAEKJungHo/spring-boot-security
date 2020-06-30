@@ -141,7 +141,7 @@ WebSecurityConfigurerAdapter 의 configure 메서드는 `스프링 시큐리티�
 
 위 코드를 분석하자면 다음과 같다.
 
-- http.authorizeRequests() : 보안 설정을 하겠다는 의미
+- http.authorizeRequests() : 보안 설정을 하겠다는 의미, 시큐리티 처리에 HttpServletRequest를 이용한다는 것을 의미
 - http.anyRequest.authenticated() : 어떠한 요청에도 인증을 요구한다는 의미
 - http.formLogin().and().httpBasic() : formLogin 방식과 httpBasic 방식을 지원한다는 의미
 
@@ -441,6 +441,31 @@ protected void configure(HttpSecurity http) throws Exception {
 ![API](images/s27.JPG)
 
 ![API](images/s28.JPG)
+
+### 동시적 세션 제어 테스트
+
+- SecurityConfig
+
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+	http.authorizeRequests()
+		.anyRequest().authenticated();
+	http.
+		formLogin()
+	.and 
+		.sessionManagement()
+		.maximumSessions(1)
+		.maxSessionsPreventsLogin(true); // 현재 사용자 인증 실패 전략
+}
+```
+
+- 크롬과 엣지 두 개의 브라우저를 준비한다.
+- 크롬에서 먼저 로그인을 한다.
+- ConcurrentSessionControlAuthenticationStrategy 클래스의 onAuthentication 메서드에 디버깅을한다.
+- 쭉 따라가면서 어떻게 동작하는지 파악한다.
+- 엣지에서 로그인을 한다.
+- 디버깅을 하면서 어떻게 동작하는지 파악한다.
 
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
