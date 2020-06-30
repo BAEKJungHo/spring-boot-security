@@ -423,6 +423,22 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ![API](images/s22.JPG)
 
+## SessionManagementFilter, ConcurrentSessionFilter
+
+- SessionManagementFilter
+	- 세션관리 : 인증 시 사용자의 세션정보를 등록, 조회, 삭제 등의 세션 이력을 관리
+	- 동시적 세션 제어 : 동일 계정으로 접속이 허용되는 최대 세션수를 제한
+	- 세션 고정 보호 : 인증 할 때마다 세션 쿠키를 새로 발급하여 공격자의 쿠키 조작을 방지
+	- 세션 생성 정책 : Always, If_Required, Never, Stateless
+	
+- ConcurrentSessionFilter
+	- 매 요청 마다 현재 사용자의 세션 만료 여부 체크
+	- 세션이 만료로 설정되었을 경우 즉시 만료 처리
+	- session.isExpired() == true
+		- 로그아웃 처리
+		- 즉시 오류 페이지 응답 : This session has been expired
+
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
