@@ -514,6 +514,32 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ![API](images/s30.JPG)
 
+### Example
+
+```java
+/**
+* 3명의 사용자 생성 후 권한 부여
+* @param auth
+* @throws Exception
+*/
+@Override
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	auth.inMemoryAuthentication().withUser("user").password("{noop}1111").roles("USER");
+	auth.inMemoryAuthentication().withUser("sys").password("{noop}1111").roles("SYS");
+	auth.inMemoryAuthentication().withUser("admin").password("{noop}1111").roles("ADMIN");
+}
+
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+	http.authorizeRequests()
+		.antMatchers("/user").hasRole("USER")
+		.antMatchers("/admin/pay").hasRole("ADMIN") 
+		.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('SYS')") // 표현식을 사용하여  ADMIN 과 SYS 권한 부여
+		.anyRequest().authenticated();
+	http.formLogin();
+}
+```    
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
