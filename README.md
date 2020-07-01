@@ -473,6 +473,44 @@ protected void configure(HttpSecurity http) throws Exception {
 
 > maxSessionsPreventsLogin 에 설정하는 boolean 값은 ConcurrentSessionControlAuthentication 에 있는 exceptionIfMaximumExceeded 이다.
 
+## 인가 API - 권한 설정 및 표현식
+
+- 선언적 방식
+	- URL
+		- http.antMatchers("/user/**").hasRole("USER")
+	- Method
+		-
+		```java
+		@PreAuthorize("hasRole("USER"))
+		public void user() {}
+		```
+
+- 동적 방식 : DB 연동 프로그래밍
+	- URL
+	- Method
+	
+- 권한 설정
+
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http
+        .antMatcher(“/shop/**”)
+        .authorizeRequests()
+            .antMatchers(“/shop/login”, “/shop/users/**”).permitAll()
+	  .antMatchers(“/shop/mypage”).hasRole(“USER”)
+            .antMatchers("/shop/admin/pay").access("hasRole('ADMIN')");
+	  .antMatchers("/shop/admin/**").access("hasRole('ADMIN') or hasRole(‘SYS ')");
+            .anyRequest().authenticated()
+       }
+```
+
+> ※ 주의 사항 - 설정 시 구체적인 경로가 먼저 오고 그것 보다 큰 범위의 경로가 뒤에 오도록 해야 한다
+
+- 인가 API 표현식
+
+![API](images/s30.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
