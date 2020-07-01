@@ -507,6 +507,9 @@ protected void configure(HttpSecurity http) throws Exception {
 
 > ※ 주의 사항 - 설정 시 구체적인 경로가 먼저 오고 그것 보다 큰 범위의 경로가 뒤에 오도록 해야 한다
 
+스프링 시큐리티는 인가처리를 위에서 아래로 처리한다. 위 코드를 보면 /shop/admin/pay 는 /shop/admin/** 에 포함되어있다는 걸 알 수 있듯이, 구체적인 경로가 상위에 오고, 그것 보다 더 큰 경로가
+뒤에 와야 한다.
+
 - 인가 API 표현식
 
 ![API](images/s30.JPG)
