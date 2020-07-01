@@ -535,7 +535,7 @@ protected void configure(HttpSecurity http) throws Exception {
 		.antMatchers("/user").hasRole("USER")
 		.antMatchers("/admin/pay").hasRole("ADMIN") 
 		.antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('SYS')") // 표현식을 사용하여  ADMIN 과 SYS 권한 부여
-		.anyRequest().authenticated();
+		.anyRequest().authenticated(); // 위에서 설정한 3개를 제외하고는 모든 요청에 대해서 인증을 요구한다는 의미이다.
 	http.formLogin();
 }
 ```    
