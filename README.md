@@ -540,6 +540,27 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```    
 
+테스트를 위해서 컨트롤러에 URL 매핑이될 핸들러 메서드들을 만들어준다.
+
+```java
+@GetMapping("/user")
+public String user() {
+	return "user";
+}
+
+@GetMapping("/admin/pay")
+public String adminPay() {
+	return "adminPay";
+}
+
+@GetMapping("/admin/**")
+public String admin() {
+	return "admin";
+}
+```
+
+그리고 먼저 user 계정으로 접속해서 테스트를 하면 /user 에는 접근이 가능하지만, /admin/pay 나 접근 불가능 한 url 을 입력하면 `Whitelabel Error Page` 가 나온다.
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
