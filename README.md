@@ -561,6 +561,25 @@ public String admin() {
 
 그리고 먼저 user 계정으로 접속해서 테스트를 하면 /user 에는 접근이 가능하지만, /admin/pay 나 접근 불가능 한 url 을 입력하면 `Whitelabel Error Page` 가 나온다.
 
+## 인증/인가 API - ExceptionTranslationFilter
+
+- AuthenticationException
+	- 인증 예외 처리
+		- AuthenticationEntryPoint 호출
+			- 로그인 페이지 이동, 401 오류 코드 전달 등
+		- 인증 예외가 발생하기 전의 요청 정보를 저장
+			- RequestCache - 사용자의 이전 요청 정보를 세션에 저장하고 이를 꺼내오는 캐시 매커니즘
+			- SavedRequest - 사용자가 요청했던 request 파라미터 값들, 그 당시의 헤더값들 등이 저장
+- AccessDeniedException
+	- 인가 예외 처리
+		- AccessDeniedHandler 에서 예외를 처리하도록 제공
+		
+![API](images/s31.JPG)		
+
+![API](images/s32.JPG)
+
+![API](images/s33.JPG)
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
