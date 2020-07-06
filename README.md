@@ -580,6 +580,45 @@ public String admin() {
 
 ![API](images/s33.JPG)
 
+```java
+@Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/admin/pay").hasRole("ADMIN")
+                .antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('SYS')")
+                .anyRequest().authenticated();
+        http.formLogin()
+                .successHandler(new AuthenticationSuccessHandler() {
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
+                        // 인증 예외가 발생하기 전의 정보를 저장한다.
+                        // 사용자의 이전 요청 정보를 세션에 저장하고 이를 꺼내오는 캐시 매커니즘
+                        RequestCache requestCache = new HttpSessionRequestCache();
+
+                        // 사용자가 요청했던 request 파라미터 값들, 그 당시의 헤더값들 등이 저장
+                        SavedRequest savedRequest = requestCache.getRequest(httpServletRequest, httpServletResponse);
+                        String redirectUrl = savedRequest.getRedirectUrl();
+                        httpServletResponse.sendRedirect(redirectUrl);
+                    }
+                });
+        http.exceptionHandling()
+                .authenticationEntryPoint(new AuthenticationEntryPoint() {
+                    @Override
+                    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+                        httpServletResponse.sendRedirect("/login"); // 여기에 적은 login 은 스프링 시큐리티가 기본으로 제공하는 로그인이 아닌, 우리가 만든 login 페이지 이다.
+                    }
+                })
+                .accessDeniedHandler(new AccessDeniedHandler() {
+                    @Override
+                    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
+                        httpServletResponse.sendRedirect("/denied");
+                    }
+                });
+    }
+```    
+
 ## 인증 API - HTTP Basic 인증 (BasicAuthenticationFilter)
 
 ![API](images/s2.JPG)
