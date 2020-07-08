@@ -20,3 +20,5 @@
   - 그리고 최종적으로 AbstractAuthenticationProcessingFilter 의 successfulAuthentication 에서 SecurityContextHolder 의 SecurityContext 에 인증된 객체인 Authentication 을 저장한다.
   - 그리고 this.successHandler.onAuthenticationSuccess(request, response, authResult); 에서 successHandler 를 호출한다.
   - AuthenticationSuccessHandler 를 구현체가 으면 해당 구현체를 호출한다.
+
+> 따라서, 보통은 User 클래스를 상속받는 클래스와, UserDetails 를 구현한 구현체 그리고 AuthenticationSuccessHandler 를 구현한 구현체 이렇게 세 가지 클래스를 사용자가 만들게 된다.
