@@ -109,7 +109,6 @@ public Authentication authenticate(Authentication authentication) throws Authent
             
             // 이 코드에서 DaoAuthenticationProvider 의 additionalAuthenticationChecks 메서드를 호출하여
             // userDetails 에 저장된 Password 와 실제 로그인 폼에서 입력한 비밀번호를 비교하는 작업을 한다.
-            // 
             this.additionalAuthenticationChecks(user, (UsernamePasswordAuthenticationToken)authentication);
         } catch (AuthenticationException var7) {
             if (!cacheWasUsed) {
