@@ -55,3 +55,7 @@ Servlet Filter 가 DelegatingProxyChain 으로 요청을 보내면 DelegatingPro
 
 ![API](../images/s37.JPG)
 
+DelegatingFilterProxy 가 springSecurityFilterChain 라는 이름을 빈으로 가지는 놈을 찾아서 요청에 대한 처리를 위임한다.
+
+스프링에서 FilterChainProxy 를 빈으로 등록할 때 springSecurityFilterChain 이라는 이름으로 등록을 한다. 따라서 DelegatingFilterProxy 가 FilterChainProxy 에게 보안 처리를 위임하는 것이다. 보안처리가 완료되면 최종적으로 DispatcherServlet 으로 가서 남은 다른 요청들을 처리하게 된다.
+
