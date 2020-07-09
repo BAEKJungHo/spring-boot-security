@@ -1,12 +1,14 @@
-# DelegatingProxyChain 과 FilterChainProxy
+# DelegatingFilterProxy 과 FilterChainProxy
 
 ![API](../images/s35.JPG)
 
 Servlet Filter 는 Servlet 2.3 버전 부터 등장했다.
 
-Servlet Filter 가 DelegatingProxyChain 으로 요청을 보내면 DelegatingProxyChain 을 통해 스프링 시큐리티가 Filter 기반으로 보안 처리를 할 수 있게 된다. 즉, DelegatingProxyChain 은 Servlet Filter 이기 때문에 가장 먼저 요청을 받게 되고, 그 요청을 스프링에게 전달하는 것이다.
+Servlet Filter 가 DelegatingFilterProxy 으로 요청을 보내면 DelegatingFilterProxy 을 통해 스프링 시큐리티가 Filter 기반으로 보안 처리를 할 수 있게 된다. 즉, DelegatingFilterProxy 은 Servlet Filter 이기 때문에 가장 먼저 요청을 받게 되고, 그 요청을 스프링에게 전달하는 것이다.
 
-특정한 이름을 가진 빈을 찾아 그 빈에게 요청을 위임하는데 그게 바로 `DelegatingProxyChain` 이다.
+특정한 이름을 가진 빈을 찾아 그 빈에게 요청을 위임하는데 그게 바로 `DelegatingFilterProxy` 이다. 
+
+localhost:8080 루트로 요청을 보낼때, 혹은 다른 요청이라도 가장 첫 번째로 반응하는 것은 DelegatingFilterProxy 클래스이다.
 
 ![API](../images/s36.JPG)
 
