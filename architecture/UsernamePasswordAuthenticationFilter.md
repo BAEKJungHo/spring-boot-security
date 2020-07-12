@@ -2,7 +2,9 @@
 
 실제 로그인을 하게 되면 UsernamePasswordAuthenticationFilter 를 통해 처리된다.
 
-## 로그인 처리 과정
+## 로그인 인증 처리 과정(Authentication Flow)
+
+![API](../images/s49.JPG)
 
 로그인 처리가 되는 과정은 다음과 같다.
 
