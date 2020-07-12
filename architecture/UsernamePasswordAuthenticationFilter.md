@@ -178,7 +178,7 @@ public class PasswordEncoderFactories {
 }
 ```
 
-따라서 비밀번호를 DB 에 저장할 때 사용하는 PasswordEncoder 를 적절하게 골라, 비밀번호를 비교하는 것이다.
+따라서 비밀번호를 DB 에 저장할 때 사용하는 PasswordEncoder(SecurityConfig 에서 설정한 PasswordEncoder 를 사용)를 이용해 비밀번호를 비교하는 것이다.
   
 - 만들어진 Authentication 객체를 ProviderManager 로 반환
   - 다시 result.provider.authenticate(authentication) 코드로 오게된다.
