@@ -204,3 +204,33 @@ public class PasswordEncoderFactories {
   - AuthenticationSuccessHandler 를 구현체가 있으면 해당 구현체를 호출한다.
 
 > 따라서, 보통은 User 클래스를 상속받는 클래스와, UserDetails 를 구현한 구현체 그리고 AuthenticationSuccessHandler 를 구현한 구현체 이렇게 세 가지 클래스를 사용자가 만들게 된다.
+
+## PasswordEncoder 
+
+스프링은 여러가지의 PasswordEncoder 를 제공하는데, SHA-512 와 같은 암호화는 지원하지 않는 경우도 있다. 이런 경우 PasswordEncoder 구현체를 만들어서 스프링 시큐리티 설정 클래스에
+PasswordEncoder 에 설정하면 된다.
+
+- SecuritySHA512
+
+```java
+public class SecuritySHA512 implements PasswordEncoder {
+    @Override
+    public String encode(CharSequence charSequence) {
+        return null;
+    }
+
+    @Override
+    public boolean matches(CharSequence charSequence, String s) {
+        return false;
+    }
+}
+```
+
+- SecurityConfig
+
+```java
+@Bean
+public PasswordEncoder passwordEncoder() {
+    return new SecuritySHA512();
+}
+```
