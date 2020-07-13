@@ -276,3 +276,12 @@ protected ProviderManager performBuild() throws Exception {
 ```
 
 초기화가 완료되고 로그인하면 로그인 처리 과정에서 적은것과 같이 동작한다.
+
+![API](../images/s51.JPG)
+
+## AuthenticationProvider
+
+ID 와 PW 를 검증하는 실질적인 클래스이다. AuthenticationProvider 인터페이스를 직접 구현하여 사용할 수도 있다. 두 가지 메서드를 지원하는데 authenticate 와 supports 이다.
+supports 는 인증을 처리할 수 있는지를 검사하는 메서드이다.
+
+![API](../images/s52.JPG)
