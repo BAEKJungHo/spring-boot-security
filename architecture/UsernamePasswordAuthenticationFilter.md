@@ -236,3 +236,7 @@ public PasswordEncoder passwordEncoder() {
     return new SecuritySHA512();
 }
 ```
+
+## AuthenticationManager
+
+![API](../images/s50.JPG)
