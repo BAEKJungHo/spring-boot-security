@@ -240,3 +240,39 @@ public PasswordEncoder passwordEncoder() {
 ## AuthenticationManager
 
 ![API](../images/s50.JPG)
+
+- AuthenticationManagerBuilder
+
+스프링 부트를 실행하고 아래 메서드에 디버깅을 하면 authenticationProvider 가 생성되는것을 알 수 있다.
+
+```java
+public AuthenticationManagerBuilder authenticationProvider(AuthenticationProvider authenticationProvider) {
+    this.authenticationProviders.add(authenticationProvider);
+    return this;
+}
+```    
+
+그리고 performBuild() 메서드에서 ProviderManager 를 생성한다.
+
+```java
+protected ProviderManager performBuild() throws Exception {
+    if (!this.isConfigured()) {
+        this.logger.debug("No authenticationProviders and no parentAuthenticationManager defined. Returning null.");
+        return null;
+    } else {
+        ProviderManager providerManager = new ProviderManager(this.authenticationProviders, this.parentAuthenticationManager);
+        if (this.eraseCredentials != null) {
+            providerManager.setEraseCredentialsAfterAuthentication(this.eraseCredentials);
+        }
+
+        if (this.eventPublisher != null) {
+            providerManager.setAuthenticationEventPublisher(this.eventPublisher);
+        }
+
+        providerManager = (ProviderManager)this.postProcess(providerManager);
+        return providerManager;
+    }
+}
+```
+
+초기화가 완료되고 로그인하면 로그인 처리 과정에서 적은것과 같이 동작한다.
