@@ -1,5 +1,5 @@
 # Authorization
 
-![API](../images/s53)
+![API](../images/s53.JPG)
 
-![API](../images/s54)
+![API](../images/s54.JPG)
