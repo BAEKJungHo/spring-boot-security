@@ -6,6 +6,6 @@
 - 권한 제어 방식 중 HTTP 자원의 보안을 처리하는 필터
 - 권한 처리를 AccessDecisionManager 에게 맡김
 
-![API](../images/s55)
+![API](../images/s55.JPG)
 
-![API](../images/s56)
+![API](../images/s56.JPG)
